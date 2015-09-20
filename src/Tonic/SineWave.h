@@ -9,8 +9,8 @@
 //
 
 
-#ifndef __Tonic__SineWave__
-#define __Tonic__SineWave__
+#ifndef TONIC_SINEWAVE_H
+#define TONIC_SINEWAVE_H
 
 #include "TableLookupOsc.h"
 
@@ -22,11 +22,11 @@ namespace Tonic {
     
     SineWave();
     
-    createGeneratorSetters(SineWave, freq, setFrequency)
+    TONIC_MAKE_GEN_SETTERS(SineWave, freq, setFrequency)
 
   };
 }
 
-#endif /* defined(__Tonic__SineWave__) */
+#endif
 
 

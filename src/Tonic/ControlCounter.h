@@ -3,14 +3,13 @@
 //  Tonic 
 //
 //  Created by Morgan Packard on 4/15/13.
-//  Copyright (c) 2013 Morgan Packard. All rights reserved.
 //
 // See LICENSE.txt for license and usage information.
 //
 
 
-#ifndef __Tonic__ControlCounter__
-#define __Tonic__ControlCounter__
+#ifndef TONIC_CONTROLCOUNTER_H
+#define TONIC_CONTROLCOUNTER_H
 
 #include "ControlGenerator.h"
 
@@ -52,12 +51,12 @@ namespace Tonic {
     
   public:
   
-    createControlGeneratorSetters(ControlCounter, trigger, setTrigger);
-    createControlGeneratorSetters(ControlCounter, end, setEnd);
+    TONIC_MAKE_CTRL_GEN_SETTERS(ControlCounter, trigger, setTrigger);
+    TONIC_MAKE_CTRL_GEN_SETTERS(ControlCounter, end, setEnd);
 
   };
 }
 
-#endif /* defined(__Tonic__ControlCounter__) */
+#endif
 
 

@@ -3,14 +3,13 @@
 //  Tonic 
 //
 //  Created by Nick Donaldson on 5/31/13.
-//  Copyright (c) 2013 Nick Donaldson. All rights reserved.
 //
 // See LICENSE.txt for license and usage information.
 //
 
 
-#ifndef __Tonic__ControlMetroDivider__
-#define __Tonic__ControlMetroDivider__
+#ifndef TONIC_CONTROLMETRODIVIDER_H
+#define TONIC_CONTROLMETRODIVIDER_H
 
 #include "ControlConditioner.h"
 
@@ -64,12 +63,12 @@ namespace Tonic {
   {
   public:
     
-    createControlGeneratorSetters(ControlMetroDivider, divisions, setDivisionsGen);
-    createControlGeneratorSetters(ControlMetroDivider, offset, setOffsetGen);
+    TONIC_MAKE_CTRL_GEN_SETTERS(ControlMetroDivider, divisions, setDivisionsGen);
+    TONIC_MAKE_CTRL_GEN_SETTERS(ControlMetroDivider, offset, setOffsetGen);
     
   };
 }
 
-#endif /* defined(__Tonic__ControlMetroDivider__) */
+#endif
 
 

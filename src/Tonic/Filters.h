@@ -9,8 +9,8 @@
 //
 
 
-#ifndef __Tonic__Filters__
-#define __Tonic__Filters__
+#ifndef TONIC_FILTERS_H
+#define TONIC_FILTERS_H
 
 #include "Effect.h"
 #include "FilterUtils.h"
@@ -405,8 +405,8 @@ namespace Tonic {
   
   public:
     
-    createGeneratorSetters(FilterType, cutoff, setCutoff);
-    createGeneratorSetters(FilterType, Q, setQ);
+    TONIC_MAKE_GEN_SETTERS(FilterType, cutoff, setCutoff);
+    TONIC_MAKE_GEN_SETTERS(FilterType, Q, setQ);
     FilterType & normalizesGain(bool norm){
       this->gen()->setNormalizesGain(norm);
       return static_cast<FilterType&>(*this);
@@ -444,6 +444,6 @@ namespace Tonic {
   
 }
 
-#endif /* defined(__Tonic__Filters__) */
+#endif
 
 

@@ -9,8 +9,8 @@
 //
 
 
-#ifndef __Tonic__Generator__
-#define __Tonic__Generator__
+#ifndef TONIC_GENERATOR_H
+#define TONIC_GENERATOR_H
 
 #include "TonicFrames.h"
 #include <cmath>
@@ -96,7 +96,7 @@ namespace Tonic {
 
 #include "FixedValue.h"
 
-#define createGeneratorSetters(generatorClassName, methodNameInGenerator, methodNameInGenerator_) \
+#define TONIC_MAKE_GEN_SETTERS(generatorClassName, methodNameInGenerator, methodNameInGenerator_) \
                                                                                         \
                                                                                         \
   generatorClassName& methodNameInGenerator(Generator arg){                             \
@@ -114,4 +114,4 @@ namespace Tonic {
 
 
 
-#endif /* defined(__Tonic__Generator__) */
+#endif

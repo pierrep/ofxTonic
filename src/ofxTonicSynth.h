@@ -41,7 +41,7 @@ public:
   ~ofxTonicSynth();
   
   void update(ofEventArgs& args);
-  void audioRequested(ofAudioEventArgs& args);
+  void audioRequested(ofEventArgs& args);
   
   /*!
     Event is triggered every time the value of the ControlGenerator changes.

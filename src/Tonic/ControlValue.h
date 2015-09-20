@@ -1,13 +1,15 @@
 //
 //  ControlValue.h
-//  TonicDemo
+//  Tonic
 //
 //  Created by Morgan Packard on 2/12/13.
 
 //
+// See LICENSE.txt for license and usage information.
+//
 
-#ifndef __TonicDemo__ControlValue__
-#define __TonicDemo__ControlValue__
+#ifndef TONIC_CONTROLVALUE_H
+#define TONIC_CONTROLVALUE_H
 
 #include "ControlGenerator.h"
 

@@ -3,14 +3,13 @@
 //  Tonic 
 //
 //  Created by Morgan Packard on 5/11/13.
-//  Copyright (c) 2013 Nick Donaldson. All rights reserved.
 //
 // See LICENSE.txt for license and usage information.
 //
 
 
-#ifndef __Tonic__ControlChangeNotifier__
-#define __Tonic__ControlChangeNotifier__
+#ifndef TONIC_CONTROLCHANGENOTIFIER_H
+#define TONIC_CONTROLCHANGENOTIFIER_H
 
 #include "ControlGenerator.h"
 #include "ControlConditioner.h"
@@ -62,6 +61,6 @@ namespace Tonic {
   };
 }
 
-#endif /* defined(__Tonic__ControlChangeNotifier__) */
+#endif
 
 

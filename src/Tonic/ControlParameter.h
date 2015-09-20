@@ -3,14 +3,13 @@
 //  Tonic 
 //
 //  Created by Nick Donaldson on 5/14/13.
-//  Copyright (c) 2013 Nick Donaldson. All rights reserved.
 //
 // See LICENSE.txt for license and usage information.
 //
 
 
-#ifndef __Tonic__ControlParameter__
-#define __Tonic__ControlParameter__
+#ifndef TONIC_CONTROLPARAMETER_H
+#define TONIC_CONTROLPARAMETER_H
 
 #include "ControlValue.h"
 
@@ -105,6 +104,6 @@ namespace Tonic {
   };
 }
 
-#endif /* defined(__Tonic__ControlParameter__) */
+#endif
 
 

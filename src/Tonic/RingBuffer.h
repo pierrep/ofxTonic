@@ -3,14 +3,13 @@
 //  Tonic 
 //
 //  Created by Nick Donaldson on 5/20/13.
-//  Copyright (c) 2013 Nick Donaldson. All rights reserved.
 //
 // See LICENSE.txt for license and usage information.
 //
 
 
-#ifndef __Tonic__RingBuffer__
-#define __Tonic__RingBuffer__
+#ifndef TONIC_RINGBUFFER_H
+#define TONIC_RINGBUFFER_H
 
 #include "Effect.h"
 #include "SampleTable.h"
@@ -39,7 +38,7 @@ namespace Tonic {
       
 #ifdef TONIC_DEBUG
       // Detect overrun
-      unsigned int finalWriteHead = (writeHead_ + nFrames) % frames();
+      unsigned long finalWriteHead = (writeHead_ + nFrames) % frames();
       if (finalWriteHead >= readHead_ && (writeHead_ < readHead_ || finalWriteHead < writeHead_)){
         warning("RingBuffer overrun detected");
       }
@@ -48,7 +47,7 @@ namespace Tonic {
       TonicFloat *writeptr = &frames_(writeHead_, 0);
       
       unsigned int bufChannels = channels();
-      unsigned int bufFrames = frames();
+      unsigned long bufFrames = frames();
       
       if (bufChannels == nChannels){
         
@@ -95,7 +94,7 @@ namespace Tonic {
       
 #ifdef TONIC_DEBUG
       // Detect underrun
-      unsigned int finalReadHead = (readHead_ + outFrames.frames()) % frames();
+      unsigned long finalReadHead = (readHead_ + outFrames.frames()) % frames();
       if (finalReadHead > writeHead_ && (readHead_ < writeHead_ || finalReadHead < readHead_)){
         warning("RingBuffer underrun detected");
       }
@@ -104,11 +103,11 @@ namespace Tonic {
       TonicFloat *readptr = &frames_(readHead_, 0);
       TonicFloat *outptr = &outFrames[0];
       
-      unsigned int nFrames = outFrames.frames();
+      unsigned long nFrames = outFrames.frames();
       unsigned int nChannels = outFrames.channels();
       
+      unsigned long bufFrames = frames();
       unsigned int bufChannels = channels();
-      unsigned int bufFrames = frames();
       
       if (bufChannels == nChannels){
         
@@ -169,7 +168,7 @@ namespace Tonic {
   public:
     
     RingBuffer(unsigned int nFrames = 64, unsigned int nChannels = 2){
-      if (obj) delete obj;
+      delete obj;
       obj = new Tonic_::RingBuffer_(nFrames, nChannels);
     }
     
@@ -268,6 +267,6 @@ namespace Tonic {
     
 }
 
-#endif /* defined(__Tonic__RingBuffer__) */
+#endif
 
 

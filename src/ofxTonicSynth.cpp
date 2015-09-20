@@ -13,7 +13,7 @@ namespace Tonic {
 
 ofxTonicSynth::ofxTonicSynth(){
   ofAddListener(ofEvents().update, this, &ofxTonicSynth::update);
-  ofAddListener(ofEvents().audioRequested, this, &ofxTonicSynth::audioRequested);
+  ofAddListener(ofEvents().update, this, &ofxTonicSynth::audioRequested);
 }
 
 ofxTonicSynth::~ofxTonicSynth(){
@@ -22,7 +22,7 @@ ofxTonicSynth::~ofxTonicSynth(){
     delete *it;
   }
   ofRemoveListener(ofEvents().update, this, &ofxTonicSynth::update);
-  ofRemoveListener(ofEvents().audioRequested, this, &ofxTonicSynth::audioRequested);
+  ofRemoveListener(ofEvents().update, this, &ofxTonicSynth::audioRequested);
 }
 
 ofEvent<float>* ofxTonicSynth::createOFEvent(ControlGenerator gen){
@@ -36,7 +36,7 @@ void ofxTonicSynth::update(ofEventArgs& args){
 }
 
 
-void ofxTonicSynth::audioRequested(ofAudioEventArgs& args){
+void ofxTonicSynth::audioRequested(ofEventArgs& args){
 
 }
 

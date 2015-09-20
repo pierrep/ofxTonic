@@ -9,8 +9,8 @@
 //
 
 
-#ifndef __Tonic__ControlStepper__
-#define __Tonic__ControlStepper__
+#ifndef TONIC_CONTROLSTEPPER_H
+#define TONIC_CONTROLSTEPPER_H
 
 #include "ControlGenerator.h"
 
@@ -78,15 +78,15 @@ namespace Tonic {
     
   public:
   
-  createControlGeneratorSetters(ControlStepper, start, setStart);
-  createControlGeneratorSetters(ControlStepper, end, setEnd);
-  createControlGeneratorSetters(ControlStepper, step, setStep);
-  createControlGeneratorSetters(ControlStepper, trigger, setTigger);
-  createControlGeneratorSetters(ControlStepper, bidirectional, setBidirectional);
+  TONIC_MAKE_CTRL_GEN_SETTERS(ControlStepper, start, setStart);
+  TONIC_MAKE_CTRL_GEN_SETTERS(ControlStepper, end, setEnd);
+  TONIC_MAKE_CTRL_GEN_SETTERS(ControlStepper, step, setStep);
+  TONIC_MAKE_CTRL_GEN_SETTERS(ControlStepper, trigger, setTigger);
+  TONIC_MAKE_CTRL_GEN_SETTERS(ControlStepper, bidirectional, setBidirectional);
 
   };
 }
 
-#endif /* defined(__Tonic__ControlStepper__) */
+#endif
 
 

@@ -10,8 +10,8 @@
 
 
 
-#ifndef __Tonic__ControlMetro__
-#define __Tonic__ControlMetro__
+#ifndef TONIC_CONTROLMETRO_H
+#define TONIC_CONTROLMETRO_H
 
 #include "ControlGenerator.h"
 
@@ -70,10 +70,10 @@ namespace Tonic {
       gen()->setBPMGen(ControlValue(bpm));
     }
     
-    createControlGeneratorSetters(ControlMetro, bpm, setBPMGen);
+    TONIC_MAKE_CTRL_GEN_SETTERS(ControlMetro, bpm, setBPMGen);
   };
 }
 
-#endif /* defined(__Tonic__ControlMetro__) */
+#endif
 
 
