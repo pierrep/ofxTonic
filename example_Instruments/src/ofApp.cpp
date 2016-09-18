@@ -4,8 +4,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
-    
+
     /*
      Generators and ControlGenerators both output a steady stream of data.
      Generators output at the sample rate (in this case, 44100 hertz.
@@ -22,16 +21,30 @@ void ofApp::setup(){
     Generator tone = SawtoothWave().freq( noteFreq );
     
     // Let's put a filter on the tone
-    tone = LPF24().input(tone).Q(1).cutoff((noteFreq * 2) + SineWave().freq(1) * 0.5 * noteFreq);
+    tone = LPF24().input(tone).Q(10).cutoff((noteFreq * 2) + SineWave().freq(1) * 0.5 * noteFreq);
     
     // It's just a steady tone until we modulate the amplitude with an envelope
     ControlGenerator envelopeTrigger = synth.addParameter("trigger");
-    Generator toneWithEnvelope = tone * ADSR().attack(0.0).decay(0.01).sustain(0).release(0).trigger(envelopeTrigger).legato(true);
+    Generator toneWithEnvelope = tone * ADSR().attack(0.0).decay(0.5).sustain(0).release(0).trigger(envelopeTrigger).legato(true);
     
     // let's send the tone through some delay
-//    Generator toneWithDelay = StereoDelay(0.5, 0.75).input(toneWithEnvelope).wetLevel(0.1).feedback(0.2);
+    Generator toneWithDelay = StereoDelay(0.5, 0.75).input(toneWithEnvelope).wetLevel(0.1).feedback(0.2);
     
     synth.setOutputGen( toneWithEnvelope );
+    
+    
+    auto _devices = soundStream.getDeviceList();
+    ofSoundStreamSettings _settings;
+    if (!_devices.empty()) {
+        _settings.setOutDevice(_devices[1]);
+    }
+    _settings.setOutListener(this);
+    _settings.bufferSize = 512;
+    _settings.sampleRate = 44100;
+    _settings.numInputChannels = 0;
+    _settings.numOutputChannels = 2;
+    soundStream.setup(_settings);
+    
 }
 
 

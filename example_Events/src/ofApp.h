@@ -65,4 +65,6 @@ public:
     void gotMessage(ofMessage msg);
     void audioRequested (float * output, int bufferSize, int nChannels);
     
+    ofSoundStream soundStream;
+
 };

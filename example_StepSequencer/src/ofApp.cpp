@@ -12,9 +12,6 @@ void ofApp::setup(){
     //      Audio Stuff
     ///////////////////////////////
     
-    // initialize ofSoundStreamSetup
-    ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
-    
     const int NUM_STEPS = 8;
     
     // synth paramters are like instance variables -- they're values you can set later, by
@@ -84,9 +81,23 @@ void ofApp::setup(){
     }
     
     
+    auto _devices = soundStream.getDeviceList();
+    ofSoundStreamSettings _settings;
+    if (!_devices.empty()) {
+        _settings.setOutDevice(_devices[1]);
+    }
+    _settings.setOutListener(this);
+    _settings.bufferSize = 512;
+    _settings.sampleRate = 44100;
+    _settings.numInputChannels = 0;
+    _settings.numOutputChannels = 2;
+    soundStream.setup(_settings);
+    
 }
 
-///////////// YOU MUST IMPLEMENT THIS METHED OR NO SOUND WILL HAPPEN //////////
+
+
+//--------------------------------------------------------------
 void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
     synth.fillBufferOfFloats(output, bufferSize, nChannels);
 }

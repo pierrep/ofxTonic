@@ -39,5 +39,6 @@ public:
     // implement the valueChanged from ControlChangeSubscriber
     void valueChanged(string, TonicFloat);
     
+    ofSoundStream soundStream;
     
 };

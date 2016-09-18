@@ -26,4 +26,7 @@ public:
     
     void audioRequested (float * output, int bufferSize, int nChannels);
     
+    ofSoundStream soundStream;
+
+    
 };

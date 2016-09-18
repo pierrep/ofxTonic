@@ -98,7 +98,18 @@ void ofApp::setup(){
     synth.setOutputGen( allVoices + allvoicesPlusReverb );
     
     // Important -- audio doesn't work without this
-    ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
+    auto _devices = soundStream.getDeviceList();
+    ofSoundStreamSettings _settings;
+    if (!_devices.empty()) {
+        _settings.setOutDevice(_devices[1]);
+    }
+    _settings.setOutListener(this);
+    _settings.bufferSize = 512;
+    _settings.sampleRate = 44100;
+    _settings.numInputChannels = 0;
+    _settings.numOutputChannels = 2;
+    soundStream.setup(_settings);
+    
     
 }
 
@@ -160,7 +171,7 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
