@@ -4,10 +4,10 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : 0,
-    "94B904776FBE35C7CEDEF599372319D63A1BA8B7" : 0
+    "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : 9223372036854775807,
+    "94B904776FBE35C7CEDEF599372319D63A1BA8B7" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3A6FCDA5-4919-453C-9C08-14F06004B9C5",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ED09A1A5-F77B-48A2-961A-7AB630773E9B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : "..",
     "94B904776FBE35C7CEDEF599372319D63A1BA8B7" : "ofxTonic\/"
@@ -17,7 +17,7 @@
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example_Basic\/example_Basic.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/openframeworks\/openFrameworks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jeonghopark\/openFrameworks.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2DE9C8846D9375EAACFABA8963120E8E7719BAF5"
     },
