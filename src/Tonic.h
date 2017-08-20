@@ -57,11 +57,17 @@
 #include "Tonic/FilterUtils.h"
 #include "Tonic/DelayUtils.h"
 #include "Tonic/Reverb.h"
+#include "Tonic/BitCrusher.h"
 
 // Utilities
 #include "Tonic/ADSR.h"
 #include "Tonic/RingBuffer.h"
 #include "Tonic/LFNoise.h"
+
+// Non-Oscillator Audio Sources
+#include "Tonic/BufferPlayer.h"
+
+// ------- Control Generators --------
 
 // ------- Control Generators --------
 
@@ -78,7 +84,16 @@
 #include "Tonic/ControlStepper.h"
 #include "Tonic/ControlRandom.h"
 #include "Tonic/ControlSnapToScale.h"
+//#include "Tonic/ControlScaleDegree.h"
 #include "Tonic/ControlMidiToFreq.h"
+#include "Tonic/ControlTriggerFilter.h"
+#include "Tonic/ControlCallback.h" // C++11 only
+//#include "Tonic/ControlRampedValue.h"
+//#include "Tonic/ControlMapper.h"
+//#include "Tonic/ControlSineOsc.h"
+//#include "Tonic/ControlBreakpoints.h"
 
+// -------- Util ---------
 
+#include "Tonic/AudioFileUtils.h"
 #endif
