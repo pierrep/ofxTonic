@@ -7,9 +7,12 @@
 //
 
 #include "AudioFileUtils.h"
+#include <fstream>
 
 #ifdef __APPLE__
 #include <AudioToolbox/AudioToolbox.h>
+#else
+#include <sndfile.h>
 #endif
 
 namespace Tonic {
@@ -89,9 +92,137 @@ namespace Tonic {
   
   #else
   
-  SampleTable loadAudioFile(string path, int numChannels){
-    Tonic::error("loadAudioFile is currently only implemented for Apple platforms.");
-    return NULL;
+  SampleTable loadAudioFile(string path, int numChannels)
+  {
+      /*
+      int       sampleChunkSize;
+      int		sampleSubChunk1Size;
+      short 	sampleFormat;
+      short 	sampleChannels;
+      int   	sampleSampleRate;
+      int   	sampleByteRate;
+      short 	sampleBlockAlign;
+      short 	sampleBitsPerSample;
+      int		sampleDataSize;
+
+       ifstream inFile( path.c_str(), ios::in | ios::binary);
+
+       cout << "Reading file %s" << path.c_str() << endl;
+
+       if(!inFile.is_open())
+       {
+           cout << "Error opening file. File not loaded." << endl;
+           return NULL;
+       }
+
+       char id[4];
+       inFile.read((char*) &id, 4);
+       if(strncmp(id,"RIFF",4) != 0)
+       {
+           cout << "Error reading sample file. File is not a RIFF (.wav) file" << endl;
+           return NULL;
+       }
+
+       inFile.seekg(4, ios::beg);
+       inFile.read( (char*) &sampleChunkSize, 4 ); // read the ChunkSize
+
+       inFile.seekg(16, ios::beg);
+       inFile.read( (char*) &sampleSubChunk1Size, 4 ); // read the SubChunk1Size
+
+       //inFile.seekg(20, ios::beg);
+       inFile.read( (char*) &sampleFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
+       if(sampleFormat != 1) {
+           cout << "File format should be PCM, sample file failed to load." << endl;
+           return NULL;
+       }
+
+       //inFile.seekg(22, ios::beg);
+       inFile.read( (char*) &sampleChannels, sizeof(short) ); // read the # of channels (1 or 2)
+
+       //inFile.seekg(24, ios::beg);
+       inFile.read( (char*) &sampleSampleRate, sizeof(int) ); // read the Samplerate
+
+       //inFile.seekg(28, ios::beg);
+       inFile.read( (char*) &sampleByteRate, sizeof(int) ); // read the byterate
+
+       //inFile.seekg(32, ios::beg);
+       inFile.read( (char*) &sampleBlockAlign, sizeof(short) ); // read the blockalign
+
+       //inFile.seekg(34, ios::beg);
+       inFile.read( (char*) &sampleBitsPerSample, sizeof(short) ); // read the bitsperSample
+
+       inFile.seekg(40, ios::beg);
+       inFile.read( (char*) &sampleDataSize, sizeof(int) ); // read the size of the data
+       //cout << sampleDataSize << endl;
+
+        // read the data chunk
+       char* myData = new char[sampleDataSize];
+       inFile.seekg(44, ios::beg);
+       inFile.read(myData, sampleDataSize);
+       inFile.close(); // close the input file
+
+       // change sampleTable numframes to long long
+       SampleTable destinationTable = SampleTable((int)sampleDataSize, sampleChannels);
+       float* data;
+       data = destinationTable.dataPointer();
+
+
+
+       delete myData;
+       */
+
+      #define FRAMES_PER_BUFFER	1024
+
+      SNDFILE    		*infile;
+      SF_INFO    		sfinfo ;
+      long              readcount;
+      long              numSamples;
+      static float tempbuf[FRAMES_PER_BUFFER];
+
+
+      /* Open sample file for reading */
+      if (! (infile = sf_open (path.c_str(), SFM_READ, &sfinfo)))
+      {   /* Open failed so print an error message. */
+          cout << "Not able to open input file " << path << endl;
+          cout <<  (sf_strerror (NULL)) << endl;
+          exit(1) ;
+      }
+
+      long frames =  sfinfo.frames;
+      int sampleChannels = sfinfo.channels;
+      numSamples = frames * sampleChannels;
+
+      SampleTable destinationTable = SampleTable(static_cast<unsigned int>(sfinfo.frames), static_cast<unsigned int>(sampleChannels));
+
+      float* data = destinationTable.dataPointer();
+
+      if(sampleChannels == 2) {
+          while ((readcount = sf_read_float (infile, tempbuf, FRAMES_PER_BUFFER)))
+          {
+              for (unsigned int i=0;i < readcount;i++) {
+                  *data++ = tempbuf[i];
+              }
+          }
+      } else if(sampleChannels == 1 ) {
+          while ((readcount = sf_read_float (infile, tempbuf, FRAMES_PER_BUFFER)))
+          {
+              for (unsigned int i=0;i < readcount;i++) {
+                  *data++ = tempbuf[i];
+                  *data++ = tempbuf[i];
+              }
+          }
+      } else {
+          cout << "Wrong number of channels: " << sampleChannels << endl;
+          exit(1);
+      }
+
+      cout << "name = " << path << "  frames: " << frames << "  samples: " << numSamples << "  channels: " << sampleChannels << endl;
+
+      /* Close input file */
+      sf_close (infile) ;
+
+
+    return destinationTable;
   }
   
   
